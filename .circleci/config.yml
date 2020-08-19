@@ -10,13 +10,19 @@ jobs: # a collection of steps
     steps: # a collection of executable commands
 
       - checkout # check out source code to working directory
-      - run:  cd ~/circleci-demo-java-spring
-      - run: ls
+     - run: 
+          name: test
+            command: cd ~/circleci-demo-java-spring
+      - run: 
+          name: test
+            command: ls
 
       - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
           # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
           key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
-      - run: ls
+      - run: 
+          name: test
+            command: ls
       - run: mvn dependency:go-offline # gets the project dependencies
       
       - save_cache: # saves the project dependencies
